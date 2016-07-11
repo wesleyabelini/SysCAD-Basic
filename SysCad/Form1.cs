@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace SysCad
 {
     public partial class FormCadSys : Form
     {
         Cadastro cadastro = new Cadastro();
+        Funcao funcao = new Funcao();
         public FormCadSys()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace SysCad
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            if(textBoxSelDocumento.Text!="")
+            if(textBoxSelDocumento.Text!="" && funcao.isok(textBoxSelDocumento.Text, "numero")==true)
             {
                 limpaCampo();
 
@@ -39,19 +39,31 @@ namespace SysCad
             }
             else
             {
+                textBoxDocumento.Clear();
                 MessageBox.Show("O valor para documento não deve ser nulo na busca.", "Erro busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            if(textBoxNome.Text!="" && textBoxDocumento.Text!="")
+            if(textBoxNome.Text!="" && textBoxDocumento.Text!="" && funcao.isok(textBoxNome.Text, "nome")==true && funcao.isok(textBoxDocumento.Text, "numero")==true)
             {
                 string data = Convert.ToDateTime(DateTime.Now).ToString();
                 string cmdInsert = @"INSERT INTO CAD VALUES ('" + textBoxNome.Text + "', '" + textBoxDocumento.Text + "', '" + data + "', '" + textBoxDescricao.Text +
                     "');";
 
-                cadastro.cadastro(cmdInsert);
+                if (textBoxDescricao.Text!="" && funcao.isok(textBoxDescricao.Text, "nome")==true)
+                {
+                    cadastro.cadastro(cmdInsert);
+                }
+                else if(textBoxDescricao.Text=="")
+                {
+                    cadastro.cadastro(cmdInsert);
+                }
+                else
+                {
+                    MessageBox.Show("A descrição não corresponde com os valores esperados.", "Erro Descrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 limpaCampo();
             }
@@ -81,12 +93,12 @@ namespace SysCad
         {
             string cmdSelect = @"SELECT DATA, DOCUMENTO, NOME FROM CAD WHERE DATA ";
             
-            if(radioButton1.Checked==true && isok(maskedTextBoxDia)==true)
+            if(radioButton1.Checked==true && funcao.isok(maskedTextBoxDia.Text, "data")==true)
             {
                 cmdSelect += "BETWEEN '" + maskedTextBoxDia.Text + " 00:00:00' AND '" + maskedTextBoxDia.Text + " 23:59:59';";
                 cadastro.listaTable(cmdSelect, dataGridView1);
             }
-            else if(radioButton2.Checked==true && isok(maskedTextBoxDia)==true && isok(maskedTextBoxFiltro)==true)
+            else if(radioButton2.Checked==true && funcao.isok(maskedTextBoxDia.Text, "data")==true && funcao.isok(maskedTextBoxFiltro.Text, "data")==true)
             {
                 cmdSelect += "BETWEEN '" + maskedTextBoxDia.Text + " 00:00:00' AND '" + maskedTextBoxFiltro.Text + " 23:59:59';";
                 cadastro.listaTable(cmdSelect, dataGridView1);
@@ -111,22 +123,30 @@ namespace SysCad
             toolStripLabel1.Text = DateTime.Now.ToString();
         }
 
-        private bool isok(MaskedTextBox mask)
+        private void textBoxSelDocumento_KeyDown(object sender, KeyEventArgs e)
         {
-            bool math = false;
+            funcao.keyEnter(e, buttonBuscar);
+        }
 
-            Regex data = new Regex(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$");
-
-            if (data.IsMatch(mask.Text))
+        private void maskedTextBoxDia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(radioButton1.Checked==true)
             {
-                math = true;
+                funcao.keyEnter(e, button1);
             }
-            else
-            {
-                MessageBox.Show("Verifique a DATA, pois não corresponde ao esperado.", "Erro DATA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+        }
 
-            return math;
+        private void maskedTextBoxFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(radioButton2.Checked==true)
+            {
+                funcao.keyEnter(e, button1);
+            }
+        }
+
+        private void maskedTextBoxFiltro_DoubleClick(object sender, EventArgs e)
+        {
+            maskedTextBoxFiltro.Text = DateTime.Now.ToString();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SysCad
 {
     class Cadastro
     {
-        string cmdconect =ConfigurationManager.ConnectionStrings["conexao"].ConnectionString;
+        string cmdconect =ConfigurationManager.ConnectionStrings["SysCad.Properties.Settings.SysCadDataConnectionString"].ConnectionString;
         public void cadastro(string comando)
         {
             SqlConnection conexao = new SqlConnection();

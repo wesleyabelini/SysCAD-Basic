@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SysCad")]
-[assembly: AssemblyDescription("Cadastro de pessoas com documento de identificação para controle de acesso em condomínios, departamentos, etc. www.phoenixkotae.com.br")]
+[assembly: AssemblyTitle("SysCad Basic")]
+[assembly: AssemblyDescription("Cadastro de pessoas com documento de identificação para controle de acesso em condomínios, departamentos, etc.                                                                                                                 http:\\\\www.phoenixkotae.com.br")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Phoenix Kotae")]
-[assembly: AssemblyProduct("SysCad")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyProduct("SysCad Basic")]
+[assembly: AssemblyCopyright("Copyright ©  2016 - Todos os direitos reservados.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -47,22 +47,25 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // textBoxLogin
             // 
             this.textBoxLogin.Location = new System.Drawing.Point(163, 85);
+            this.textBoxLogin.MaxLength = 15;
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(187, 20);
             this.textBoxLogin.TabIndex = 1;
+            this.textBoxLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLogin_KeyDown);
             // 
             // textBoxSenha
             // 
             this.textBoxSenha.Location = new System.Drawing.Point(163, 128);
+            this.textBoxSenha.MaxLength = 15;
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.PasswordChar = '*';
             this.textBoxSenha.Size = new System.Drawing.Size(187, 20);
             this.textBoxSenha.TabIndex = 2;
+            this.textBoxSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSenha_KeyDown);
             // 
             // buttonLogin
             // 
@@ -111,7 +114,6 @@
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

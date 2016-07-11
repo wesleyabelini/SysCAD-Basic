@@ -79,6 +79,7 @@
             // 
             this.textBoxNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxNome.Location = new System.Drawing.Point(79, 20);
+            this.textBoxNome.MaxLength = 40;
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(439, 20);
             this.textBoxNome.TabIndex = 0;
@@ -87,6 +88,7 @@
             // 
             this.textBoxDocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxDocumento.Location = new System.Drawing.Point(79, 46);
+            this.textBoxDocumento.MaxLength = 20;
             this.textBoxDocumento.Name = "textBoxDocumento";
             this.textBoxDocumento.Size = new System.Drawing.Size(439, 20);
             this.textBoxDocumento.TabIndex = 1;
@@ -95,6 +97,7 @@
             // 
             this.textBoxDescricao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxDescricao.Location = new System.Drawing.Point(79, 72);
+            this.textBoxDescricao.MaxLength = 50;
             this.textBoxDescricao.Multiline = true;
             this.textBoxDescricao.Name = "textBoxDescricao";
             this.textBoxDescricao.Size = new System.Drawing.Size(439, 90);
@@ -203,6 +206,7 @@
             this.textBoxSelDocumento.Name = "textBoxSelDocumento";
             this.textBoxSelDocumento.Size = new System.Drawing.Size(358, 20);
             this.textBoxSelDocumento.TabIndex = 0;
+            this.textBoxSelDocumento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSelDocumento_KeyDown);
             // 
             // tabControl1
             // 
@@ -315,6 +319,8 @@
             this.maskedTextBoxFiltro.Size = new System.Drawing.Size(109, 20);
             this.maskedTextBoxFiltro.TabIndex = 3;
             this.maskedTextBoxFiltro.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBoxFiltro.DoubleClick += new System.EventHandler(this.maskedTextBoxFiltro_DoubleClick);
+            this.maskedTextBoxFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBoxFiltro_KeyDown);
             // 
             // maskedTextBoxDia
             // 
@@ -324,6 +330,7 @@
             this.maskedTextBoxDia.Size = new System.Drawing.Size(106, 20);
             this.maskedTextBoxDia.TabIndex = 2;
             this.maskedTextBoxDia.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBoxDia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBoxDia_KeyDown);
             // 
             // radioButton2
             // 
@@ -410,7 +417,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCadSys";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SysCad";
+            this.Text = "SysCad Basic";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
