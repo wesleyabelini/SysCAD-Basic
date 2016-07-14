@@ -48,8 +48,8 @@ namespace SysCad
         {
             if(textBoxNome.Text!="" && textBoxDocumento.Text!="" && funcao.isok(textBoxNome.Text, "nome")==true && funcao.isok(textBoxDocumento.Text, "numero")==true)
             {
-                string data = Convert.ToDateTime(DateTime.Now).ToString();
-                string cmdInsert = @"INSERT INTO CAD VALUES ('" + textBoxNome.Text + "', '" + textBoxDocumento.Text + "', '" + data + "', '" + textBoxDescricao.Text +
+                string data = Convert.ToDateTime(DateTime.Now).ToString("MM/dd/yyyy hh:mm:ss");
+                string cmdInsert = @"INSERT INTO CAD VALUES ('" + textBoxNome.Text + "', '" + textBoxDocumento.Text + "', '" + data + "', '" + textBoxDescricao.Text + 
                     "');";
 
                 if (textBoxDescricao.Text!="" && funcao.isok(textBoxDescricao.Text, "nome")==true)
@@ -95,12 +95,16 @@ namespace SysCad
             
             if(radioButton1.Checked==true && funcao.isok(maskedTextBoxDia.Text, "data")==true)
             {
-                cmdSelect += "BETWEEN '" + maskedTextBoxDia.Text + " 00:00:00' AND '" + maskedTextBoxDia.Text + " 23:59:59';";
+                cmdSelect += "BETWEEN '" + Convert.ToDateTime(maskedTextBoxDia.Text).ToString("MM/dd/yyyy") + " 00:00:00' AND '" + 
+                    Convert.ToDateTime(maskedTextBoxDia.Text).ToString("MM/dd/yyyy") + " 23:59:59';";
+
                 cadastro.listaTable(cmdSelect, dataGridView1);
             }
             else if(radioButton2.Checked==true && funcao.isok(maskedTextBoxDia.Text, "data")==true && funcao.isok(maskedTextBoxFiltro.Text, "data")==true)
             {
-                cmdSelect += "BETWEEN '" + maskedTextBoxDia.Text + " 00:00:00' AND '" + maskedTextBoxFiltro.Text + " 23:59:59';";
+                cmdSelect += "BETWEEN '" + Convert.ToDateTime(maskedTextBoxDia.Text).ToString("MM/dd/yyyy") + " 00:00:00' AND '" + 
+                    Convert.ToDateTime(maskedTextBoxFiltro.Text).ToString("MM/dd/yyyy") + " 23:59:59';";
+
                 cadastro.listaTable(cmdSelect, dataGridView1);
             }
         }
