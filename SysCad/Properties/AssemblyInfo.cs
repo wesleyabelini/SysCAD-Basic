@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SysCad Basic")]
-[assembly: AssemblyDescription("Cadastro de pessoas com documento de identificação para controle de acesso em condomínios, departamentos, etc.                                                                                                                 http:\\\\www.phoenixkotae.com.br")]
+[assembly: AssemblyDescription("SysCAD Basic é um Software destinado ao controle de acesso a locais privados. Com ele, é possível realizar o registro de frequentadores de áreas internas e externas, possibilitando maior segurança e praticidade aos proprietários de consultórios, edificações e locais com grande circulação de pessoas. Para mais informações, acesse:                   http:\\\\www.phoenixkotae.com.br")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Phoenix Kotae")]
 [assembly: AssemblyProduct("SysCad Basic")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.4")]
+[assembly: AssemblyFileVersion("1.0.0.4")]
